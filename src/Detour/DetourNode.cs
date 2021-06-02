@@ -31,14 +31,14 @@ namespace RecastSharp
         //////////////////////////////////////////////////////////////////////////////////////////
         public dtNodePool(int maxNodes, int hashSize)
         {
+            this.m_maxNodes = maxNodes;
+            this.m_hashSize = hashSize;
+
             dtAssert(dtNextPow2((uint)m_hashSize) == (uint)m_hashSize);
             // pidx is special as 0 means "none" and 1 is the first node. For that reason
             // we have 1 fewer nodes available than the number of values it can contain.
             dtAssert(m_maxNodes > 0 && m_maxNodes <= DT_NULL_IDX && m_maxNodes <= (1 << DT_NODE_PARENT_BITS) - 1);
 
-
-            this.m_maxNodes = maxNodes;
-            this.m_hashSize = hashSize;
             this.m_nodeCount = 0;
 
             m_nodes = (dtNode*)dtAlloc(sizeof(dtNode) * m_maxNodes);
