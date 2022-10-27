@@ -1477,8 +1477,8 @@ namespace RecastSharp
                                 float tmax = (neia[k * 2 + 1] - va[2]) / (vb[2] - va[2]);
                                 if (tmin > tmax)
                                     dtSwap(ref tmin, ref tmax);
-                                link->bmin = (byte)(dtClamp(tmin, 0.0f, 1.0f) * 255.0f);
-                                link->bmax = (byte)(dtClamp(tmax, 0.0f, 1.0f) * 255.0f);
+                                link->bmin = (byte)Math.Round(dtClamp(tmin, 0.0f, 1.0f) * 255.0f);
+                                link->bmax = (byte)Math.Round(dtClamp(tmax, 0.0f, 1.0f) * 255.0f);
                             }
                             else if (dir == 2 || dir == 6)
                             {
@@ -1486,8 +1486,8 @@ namespace RecastSharp
                                 float tmax = (neia[k * 2 + 1] - va[0]) / (vb[0] - va[0]);
                                 if (tmin > tmax)
                                     dtSwap(ref tmin, ref tmax);
-                                link->bmin = (byte)(dtClamp(tmin, 0.0f, 1.0f) * 255.0f);
-                                link->bmax = (byte)(dtClamp(tmax, 0.0f, 1.0f) * 255.0f);
+                                link->bmin = (byte)Math.Round(dtClamp(tmin, 0.0f, 1.0f) * 255.0f);
+                                link->bmax = (byte)Math.Round(dtClamp(tmax, 0.0f, 1.0f) * 255.0f);
                             }
                         }
                     }
