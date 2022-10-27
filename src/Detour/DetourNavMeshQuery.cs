@@ -3122,11 +3122,7 @@ namespace RecastSharp
             float* pt = stackalloc float[3];
             dtRandomPointInConvexPoly(verts, poly->vertCount, areas, s, t, pt);
 
-            float h = 0.0f;
-            uint status = getPolyHeight(polyRef, pt, out h);
-            if (dtStatusFailed(status))
-                return status;
-            pt[1] = h;
+            closestPointOnPoly(polyRef, pt, pt, out bool _);
 
             dtVcopy(randomPt, pt);
             randomRef = polyRef;
@@ -3322,16 +3318,12 @@ namespace RecastSharp
             float* pt = stackalloc float[3];
             dtRandomPointInConvexPoly(verts, randomPoly->vertCount, areas, s, t, pt);
 
-            float h = 0.0f;
-            uint stat = getPolyHeight(randomPolyRef, pt, out h);
-            if (dtStatusFailed(status))
-                return stat;
-            pt[1] = h;
+            closestPointOnPoly(randomPolyRef, pt, pt, out bool _);
 
             dtVcopy(randomPt, pt);
             randomRef = randomPolyRef;
 
-            return DT_SUCCESS;
+            return status;
         }
 
         /// Finds the closest point on the specified polygon.
