@@ -653,7 +653,6 @@ namespace RecastSharp
             int nvp = mesh.nvp;
 
             // Count number of polygons to remove.
-            int numRemovedVerts = 0;
             int numTouchedVerts = 0;
             int numRemainingEdges = 0;
             for (int i = 0; i < mesh.npolys; ++i)
@@ -674,7 +673,6 @@ namespace RecastSharp
                 }
                 if (numRemoved != 0)
                 {
-                    numRemovedVerts += numRemoved;
                     numRemainingEdges += numVerts - (numRemoved + 1);
                 }
             }
