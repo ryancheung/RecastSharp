@@ -3826,6 +3826,8 @@ namespace RecastSharp
             // Append or update last vertex
             dtStatus stat = 0;
             float* pt = stackalloc float[3];
+            float* left = stackalloc float[3];
+            float* right = stackalloc float[3];
             for (int i = startIdx; i < endIdx; i++)
             {
                 // Calculate portal
@@ -3841,8 +3843,6 @@ namespace RecastSharp
                 if (dtStatusFailed(m_nav.getTileAndPolyByRef(to, out toTile, out toPoly)))
                     return DT_FAILURE | DT_INVALID_PARAM;
 
-                float* left = stackalloc float[3];
-                float* right = stackalloc float[3];
                 if (dtStatusFailed(getPortalPoints(from, fromPoly, fromTile, to, toPoly, toTile, left, right)))
                     break;
 
