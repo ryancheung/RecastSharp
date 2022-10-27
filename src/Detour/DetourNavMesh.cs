@@ -211,7 +211,7 @@ namespace RecastSharp
         public uint linksFreeList; ///< Index to the next free link.
         public dtMeshHeader* header; ///< The tile header.
         public dtPoly* polys; ///< The tile polygons. [Size: dtMeshHeader::polyCount]
-        public float* verts; ///< The tile vertices. [Size: dtMeshHeader::vertCount]
+        public float* verts; ///< The tile vertices. [(x, y, z) * dtMeshHeader::vertCount]
         public dtLink* links; ///< The tile links. [Size: dtMeshHeader::maxLinkCount]
         public dtPolyDetail* detailMeshes; ///< The tile's detail sub-meshes. [Size: dtMeshHeader::detailMeshCount]
 
