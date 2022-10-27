@@ -441,7 +441,7 @@ namespace RecastSharp
         /// Derives the xz-plane 2D perp product of the two vectors. (uz*vx - ux*vz)
         ///  @param[in]        u        The LHV vector [(x, y, z)]
         ///  @param[in]        v        The RHV vector [(x, y, z)]
-        /// @return The dot product on the xz-plane.
+        /// @return The perp dot product on the xz-plane.
         ///
         /// The vectors are projected onto the xz-plane, so the y-values are ignored.
         public static float dtVperp2D(float* u, float* v)
