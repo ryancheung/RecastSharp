@@ -1345,7 +1345,7 @@ namespace RecastSharp
                 for (int j = poly->vertCount - 1; j >= 0; --j)
                 {
                     // Skip hard and non-internal edges.
-                    if (poly->neis[j] == 0 || (poly->neis[j] & DT_EXT_LINK) != 1)
+                    if (poly->neis[j] == 0 || (poly->neis[j] & DT_EXT_LINK) != 0)
                         continue;
 
                     uint idx = allocLink(tile);

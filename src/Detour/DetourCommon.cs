@@ -711,7 +711,7 @@ namespace RecastSharp
 
         public static bool dtIntersectSegmentPoly2D(float* p0, float* p1, float* verts, int nverts, ref float tmin, ref float tmax, ref int segMin, ref int segMax)
         {
-            return dtIntersectSegmentPoly2D(new ReadOnlySpan<float>(p0, 3), new ReadOnlySpan<float>(p1, 3), new ReadOnlySpan<float>(verts, nverts), nverts, ref tmin, ref tmax, ref segMin, ref segMax);
+            return dtIntersectSegmentPoly2D(new ReadOnlySpan<float>(p0, 3), new ReadOnlySpan<float>(p1, 3), new ReadOnlySpan<float>(verts, nverts * 3), nverts, ref tmin, ref tmax, ref segMin, ref segMax);
         }
         public static bool dtIntersectSegmentPoly2D(ReadOnlySpan<float> p0, ReadOnlySpan<float> p1, ReadOnlySpan<float> verts, int nverts, ref float tmin, ref float tmax, ref int segMin, ref int segMax)
         {
@@ -803,7 +803,7 @@ namespace RecastSharp
         /// @return True if the point is inside the polygon.
         public static bool dtPointInPolygon(float* pt, float* verts, int nverts)
         {
-            return dtPointInPolygon(new ReadOnlySpan<float>(pt, 3), new ReadOnlySpan<float>(verts, nverts), nverts);
+            return dtPointInPolygon(new ReadOnlySpan<float>(pt, 3), new ReadOnlySpan<float>(verts, nverts * 3), nverts);
         }
         public static bool dtPointInPolygon(ReadOnlySpan<float> pt, ReadOnlySpan<float> verts, int nverts)
         {
@@ -823,7 +823,7 @@ namespace RecastSharp
 
         public static bool dtDistancePtPolyEdgesSqr(float* pt, float* verts, int nverts, float* ed, float* et)
         {
-            return dtDistancePtPolyEdgesSqr(new ReadOnlySpan<float>(pt, 3), new ReadOnlySpan<float>(verts, nverts), nverts, new Span<float>(ed, nverts), new Span<float>(et, nverts));
+            return dtDistancePtPolyEdgesSqr(new ReadOnlySpan<float>(pt, 3), new ReadOnlySpan<float>(verts, nverts * 3), nverts, new Span<float>(ed, nverts * 3), new Span<float>(et, nverts * 3));
         }
         public static bool dtDistancePtPolyEdgesSqr(ReadOnlySpan<float> pt, ReadOnlySpan<float> verts, int nverts, Span<float> ed, Span<float> et)
         {
@@ -1721,7 +1721,7 @@ namespace RecastSharp
             var src = @params->polys;
             for (int i = 0; i < @params->polyCount; ++i)
             {
-                dtPoly p = navPolys[i];
+                ref dtPoly p = ref navPolys[i];
                 p.vertCount = 0;
                 p.flags = @params->polyFlags[i];
                 p.setArea(@params->polyAreas[i]);
@@ -1806,7 +1806,7 @@ namespace RecastSharp
                 int tbase = 0;
                 for (int i = 0; i < @params->polyCount; ++i)
                 {
-                    dtPolyDetail dtl = navDMeshes[i];
+                    ref dtPolyDetail dtl = ref navDMeshes[i];
                     int nv = navPolys[i].vertCount;
                     dtl.vertBase = 0;
                     dtl.vertCount = 0;
